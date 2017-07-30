@@ -1,0 +1,33 @@
+{
+  "name": "eslint-output",
+  "description": "export multiple formats of eslint",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "license": "MIT",
+  "version": "0.0.1",
+  "private": false,
+  "bin": {
+    "eslint-output": "./app.js"
+  },
+  "scripts": {
+    "test": "exit 0",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "lint:outputs": "node app.js"
+  },
+  "dependencies": {
+    "debug": "^2.6.8",
+    "rc": "^1.2.1",
+    "write": "^1.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=3"
+  }
+}

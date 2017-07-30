@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+const CLIEngine = require('eslint').CLIEngine;
+const path = require('path');
+const write = require('write');
+const debug = require('debug')('eslint-output');
+const rc = require('./config');
+
+const cwd = path.resolve(process.cwd());
+
+const cli = new CLIEngine(Object.assign({
+  envs: ['browser', 'mocha'],
+  useEslintrc: true,
+}, rc.config, { cwd }));
+
+const report = cli.executeOnFiles(rc.files || ['.']);
+
+const outputs = {
+  console(output) {
+    return console.log(output);
+  },
+  file(output, format) {
+    if (!format.path) {
+      return debug(`a 'path' prop is required for this format (${format.name}), please specify and run again`);
+    }
+    try {
+      return write.sync(path.resolve(cwd, format.path), output);
+    } catch (e) {
+      return debug(`Could not write file for eslint format: ${format.name} - ${e.message}`);
+    }
+  },
+};
+
+rc.formats.forEach((format) => {
+  const formatter = cli.getFormatter(format.name);
+  if (formatter) {
+    const outputMethod = outputs[format.output] || outputs.console;
+    outputMethod(formatter(report.results), format, report);
+  } else {
+    debug(`could not find formatter with name ${format.name}`);
+  }
+});
+
+if (report.errorCount > 0) {
+  process.exit(1);
+}
+
