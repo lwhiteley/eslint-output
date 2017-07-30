@@ -1,7 +1,8 @@
 eslint-output
 ========
 
-https://travis-ci.org/lwhiteley/eslint-output.svg?branch=master
+[![npm version](https://badge.fury.io/js/eslint-output.svg)](https://badge.fury.io/js/eslint-output)
+[![Build Status](https://travis-ci.org/lwhiteley/eslint-output.svg?branch=master)](https://travis-ci.org/lwhiteley/eslint-output)
 
 ### Getting started
 
