@@ -10,7 +10,7 @@ Next Steps
 
 - configure eslint using `.eslintrc`
 - create an npm script in your package json eg. `"eslint-output": "eslint-output"`
-- configure eslint-output with `.eslintoutputrc`. see example below
+- configure eslint-output with `.eslintoutputrc` placed at the root of your project's directory. see example below
 - run `npm run eslint-output`
 
 
@@ -35,8 +35,9 @@ Example `.eslintoutputrc`
 ```
 NB: 
 
-It is optional to also specify configs for the 
-eslint cliengine using the config property http://eslint.org/docs/developer-guide/nodejs-api#cliengine. However it is recommended you use the `.eslintrc`
+- It is optional to also specify configs for the 
+eslint cliengine using the config property http://eslint.org/docs/developer-guide/nodejs-api#cliengine. However, it is recommended that you use the `.eslintrc`
+- file paths are relative to the current working directory
 
 ## Notes
 - pull requests are welcome

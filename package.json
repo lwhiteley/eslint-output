@@ -1,13 +1,21 @@
 {
   "name": "eslint-output",
+  "version": "0.0.2",
   "description": "export multiple formats of eslint",
+  "keywords": [
+    "eslint",
+    "multiple",
+    "outputs",
+    "format",
+    "formats",
+    "wrapper"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/lwhiteley/eslint-output"
   },
   "author": "Layton Whiteley",
   "license": "MIT",
-  "version": "0.0.1",
   "private": false,
   "bin": {
     "eslint-output": "./app.js"
