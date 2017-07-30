@@ -1,6 +1,8 @@
 eslint-output
 ========
 
+https://travis-ci.org/lwhiteley/eslint-output.svg?branch=master
+
 ### Getting started
 
 ```shell

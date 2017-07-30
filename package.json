@@ -1,6 +1,6 @@
 {
   "name": "eslint-output",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "export multiple formats of eslint",
   "keywords": [
     "eslint",
@@ -21,7 +21,7 @@
     "eslint-output": "./app.js"
   },
   "scripts": {
-    "test": "exit 0",
+    "test": "npm run lint",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "lint:outputs": "node app.js"
