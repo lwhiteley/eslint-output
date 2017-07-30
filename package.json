@@ -1,6 +1,6 @@
 {
   "name": "eslint-output",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "export multiple formats of eslint",
   "keywords": [
     "eslint",

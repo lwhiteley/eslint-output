@@ -31,7 +31,14 @@ const outputs = {
   },
 };
 
-rc.formats.forEach((format) => {
+let formats = rc.formats;
+
+if (!Array.isArray(rc.formats)) {
+  formats = [{ name: 'stylish' }];
+  debug('using default format \'stylish\'');
+}
+
+formats.forEach((format) => {
   const formatter = cli.getFormatter(format.name);
   if (formatter) {
     const outputMethod = outputs[format.output] || outputs.console;
