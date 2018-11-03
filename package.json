@@ -27,14 +27,14 @@
     "lint:outputs": "node app.js"
   },
   "dependencies": {
-    "debug": "^2.6.8",
-    "rc": "^1.2.1",
+    "debug": "^4.1.0",
+    "rc": "^1.2.8",
     "write": "^1.0.3"
   },
   "devDependencies": {
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-plugin-import": "^2.7.0"
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^11.3.2",
+    "eslint-plugin-import": "^2.14.0"
   },
   "peerDependencies": {
     "eslint": ">=3"
