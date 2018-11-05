@@ -33,13 +33,12 @@ Example `.eslintoutputrc`
       "path": "tmp/junit.xml"
     }
   ],
-  "config": {}
+  "cliEngineConfig": {}
 }
 ```
-NB: 
+NB:
 
-- It is optional to also specify configs for the 
-eslint cliengine using the config property http://eslint.org/docs/developer-guide/nodejs-api#cliengine. However, it is recommended that you use the `.eslintrc`
+- It is optional to also specify configs for the eslint cliengine using the `cliEngineConfig` property. See http://eslint.org/docs/developer-guide/nodejs-api#cliengine for the options. However, it is recommended that you use the `.eslintrc`
 - file paths are relative to the current working directory
 
 ## Notes

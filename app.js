@@ -11,7 +11,7 @@ const cwd = path.resolve(process.cwd());
 const cli = new CLIEngine(Object.assign({
   envs: ['browser', 'mocha'],
   useEslintrc: true,
-}, rc.config, { cwd }));
+}, rc.cliEngineConfig, { cwd }));
 
 const report = cli.executeOnFiles(rc.files || ['.']);
 
