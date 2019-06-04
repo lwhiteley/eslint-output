@@ -64,7 +64,7 @@ formats.forEach(format => {
 
 if (
   report.errorCount > 0 ||
-  (maxWarnings !== undefined && report.warningCount > maxWarnings)
+  (typeof maxWarnings === 'number' && report.warningCount > maxWarnings)
 ) {
   process.exitCode = 1;
   debug('exited with code: 1');
