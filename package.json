@@ -26,14 +26,15 @@
     "lint:fix": "eslint --fix .",
     "lint:outputs": "node app.js",
     "publish": "git push origin --tags && git push origin",
-    "release:patch": "npm version patch && npm publish",
-    "release:minor": "npm version minor && npm publish",
-    "release:major": "npm version major && npm publish"
+    "release:patch": "npm version patch && npm publish --access public",
+    "release:minor": "npm version minor && npm publish --access public",
+    "release:major": "npm version major && npm publish --access public"
   },
   "dependencies": {
     "debug": "^4.1.0",
     "rc": "^1.2.8",
-    "write": "^1.0.3"
+    "write": "^1.0.3",
+    "yargs": "^13.2.4"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
