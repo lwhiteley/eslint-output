@@ -8,7 +8,10 @@ const debug = require('debug')('eslint-output');
 const rc = require('./config');
 
 const cwd = path.resolve(process.cwd());
-const { maxWarnings } = yargs.argv;
+const { maxWarnings, quiet } = yargs.options({
+  maxWarnings: { type: 'number', default: false },
+  quiet: { type: 'boolean', default: false },
+}).argv;
 
 const cli = new CLIEngine(
   Object.assign(
@@ -22,6 +25,10 @@ const cli = new CLIEngine(
 );
 
 const report = cli.executeOnFiles(rc.files || ['.']);
+
+if (quiet) {
+  report.results = CLIEngine.getErrorResults(report.results);
+}
 
 const outputs = {
   console(output) {

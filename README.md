@@ -6,18 +6,20 @@ eslint-output
 
 ### Getting started
 
+Install `eslint-output` using `npm` or your favorite node modules manager.
 ```shell
 npm i --save-dev eslint-output
 ```
-Next Steps
 
-- configure eslint using `.eslintrc`
-- create an npm script in your package json eg. `"eslint-output": "eslint-output"`
-- configure eslint-output with `.eslintoutputrc` placed at the root of your project's directory. see example below
-- run `npm run eslint-output`
+#### Getting started: Next Steps
+
+- Configure eslint using `.eslintrc`
+- Create an npm script in your package json eg. `"eslint-output": "eslint-output"`
+- Configure eslint-output with `.eslintoutputrc` placed at the root of your project's directory. See example below
+- Run `npm run eslint-output` or `yarn run eslint-output`. See below for command line options.
 
 
-Example `.eslintoutputrc`
+**Example `.eslintoutputrc`**
 
 ```json
 {
@@ -36,11 +38,16 @@ Example `.eslintoutputrc`
   "cliEngineConfig": {}
 }
 ```
-NB:
+
+##### Commad line options
+```
+--quiet                         Don't report warnings, only errors
+--max-warnings Int              Maximum number of warnings before the process returns an unsucessful error code
+```
+
+#### Notes:
 
 - It is optional to also specify configs for the eslint cliengine using the `cliEngineConfig` property. See http://eslint.org/docs/developer-guide/nodejs-api#cliengine for the options. However, it is recommended that you use the `.eslintrc`
 - file paths are relative to the current working directory
-
-## Notes
 - pull requests are welcome
 
