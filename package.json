@@ -1,6 +1,6 @@
 {
   "name": "eslint-output",
-  "version": "1.2.3",
+  "version": "2.0.1",
   "description": "export multiple formats of eslint",
   "keywords": [
     "eslint",
@@ -24,24 +24,25 @@
     "test": "npm run lint",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "lint:outputs": "node app.js",
+    "lint:outputs": "DEBUG=true node app.js",
     "publish": "git push origin --tags && git push origin",
     "release:patch": "npm version patch && npm publish --access public",
     "release:minor": "npm version minor && npm publish --access public",
     "release:major": "npm version major && npm publish --access public"
   },
   "dependencies": {
-    "debug": "^4.1.0",
-    "rc": "^1.2.8",
-    "write": "^1.0.3",
-    "yargs": "^13.2.4"
+    "cosmiconfig": "^6.0.0",
+    "debug": "^4.1.1",
+    "write": "^2.0.0",
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^11.3.2",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2"
   },
   "peerDependencies": {
-    "eslint": ">=3"
+    "eslint": ">=6"
   }
 }

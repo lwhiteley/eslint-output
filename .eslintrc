@@ -1,7 +1,12 @@
 {
   "extends": [
-    "airbnb-base"
+    "airbnb-base",
+    "prettier"
   ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
   "plugins": [],
   "env": {
     "node": true,
@@ -9,13 +14,10 @@
   },
   "rules": {
     "comma-dangle": [1, "always-multiline"],
-    "no-underscore-dangle" : 0,
-    "max-len": [1, 180, 4],
     "arrow-body-style": [0],
-    "no-param-reassign": 0,
     "global-require": 0,
     "no-console": 0,
     "import/no-unresolved": [0],
-    "arrow-parens": 0
+    "no-unused-expressions": "error"
   }
 }
