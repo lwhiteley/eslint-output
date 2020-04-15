@@ -53,4 +53,4 @@ npm i --save-dev eslint-output
 
 ### Breaking changes
 
-- removed explicitly setting `env: ['browser', 'mocha']`
+- removed explicitly setting `envs: ['browser', 'mocha']`
