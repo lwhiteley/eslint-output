@@ -13,16 +13,14 @@ const { maxWarnings, quiet } = yargs.options({
   quiet: { type: 'boolean', default: false },
 }).argv;
 
-const cli = new CLIEngine(
-  Object.assign(
-    {
-      envs: ['browser', 'mocha'],
-      useEslintrc: true,
-    },
-    rc.cliEngineConfig,
-    { cwd },
-  ),
-);
+const config = {
+  envs: ['browser', 'mocha'],
+  useEslintrc: true,
+  ...rc.cliEngineConfig,
+  cwd,
+};
+
+const cli = new CLIEngine(config);
 
 const report = cli.executeOnFiles(rc.files || ['.']);
 
@@ -37,9 +35,7 @@ const outputs = {
   file(output, format) {
     if (!format.path) {
       return debug(
-        `a 'path' prop is required for this format (${
-          format.name
-        }), please specify and run again`,
+        `a 'path' prop is required for this format (${format.name}), please specify and run again`,
       );
     }
     try {
@@ -59,7 +55,7 @@ if (!Array.isArray(rc.formats)) {
   debug("using default format 'stylish'");
 }
 
-formats.forEach(format => {
+formats.forEach((format) => {
   const formatter = cli.getFormatter(format.name);
   if (formatter) {
     const outputMethod = outputs[format.output] || outputs.console;
