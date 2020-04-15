@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const CLIEngine = require('eslint').CLIEngine;
+const { CLIEngine } = require('eslint');
 const path = require('path');
 const yargs = require('yargs');
 const write = require('write');
@@ -14,15 +14,14 @@ const { maxWarnings, quiet } = yargs.options({
 }).argv;
 
 const config = {
-  envs: ['browser', 'mocha'],
   useEslintrc: true,
-  ...rc.cliEngineConfig,
+  ...(rc.cliEngineConfig || {}),
   cwd,
 };
+const filesToVerify = rc.files || ['.'];
 
 const cli = new CLIEngine(config);
-
-const report = cli.executeOnFiles(rc.files || ['.']);
+const report = cli.executeOnFiles(filesToVerify);
 
 if (quiet) {
   report.results = CLIEngine.getErrorResults(report.results);
@@ -48,7 +47,7 @@ const outputs = {
   },
 };
 
-let formats = rc.formats;
+let { formats } = rc;
 
 if (!Array.isArray(rc.formats)) {
   formats = [{ name: 'stylish' }];
@@ -65,10 +64,13 @@ formats.forEach((format) => {
   }
 });
 
-if (
-  report.errorCount > 0 ||
-  (typeof maxWarnings === 'number' && report.warningCount > maxWarnings)
-) {
+const isRunFailed = () => {
+  const exceededMaxWarnings =
+    typeof maxWarnings === 'number' && report.warningCount > maxWarnings;
+  return report.errorCount > 0 || exceededMaxWarnings;
+};
+
+if (isRunFailed()) {
   process.exitCode = 1;
   debug('exited with code: 1');
 }

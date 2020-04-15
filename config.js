@@ -1,6 +1,10 @@
-const rc = require('rc');
+const { cosmiconfigSync } = require('cosmiconfig');
 
-module.exports = rc('eslintoutput', {
+const explorerSync = cosmiconfigSync('eslintoutput');
+
+const searchedFor = explorerSync.search();
+
+module.exports = {
   files: ['.'],
   formats: [
     {
@@ -8,4 +12,5 @@ module.exports = rc('eslintoutput', {
       output: 'console',
     },
   ],
-});
+  ...searchedFor.config,
+};
