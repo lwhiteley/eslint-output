@@ -8,7 +8,8 @@ const debug = require('debug')('eslint-output');
 const rc = require('./config');
 
 const cwd = path.resolve(process.cwd());
-const { maxWarnings, quiet, _ } = yargs.options({
+const { formatOverrides, maxWarnings, quiet, _ } = yargs.options({
+  formatOverrides: { type: 'array', alias: 'o' },
   maxWarnings: { type: 'number', alias: 'm' },
   quiet: { type: 'boolean', default: false, alias: 'q' },
 }).argv;
@@ -21,8 +22,14 @@ const config = {
 
 const cli = new ESLint(config);
 
+const groupByN = (n, data) => {
+  const result = [];
+  for (let i = 0; i < data.length; i += n) result.push(data.slice(i, i + n));
+  return result;
+};
+
 const createReport = async () => {
-  const filesToVerify = _ || rc.files || ['.'];
+  const filesToVerify = _.length ? _ : rc.files || ['.'];
   let report = await cli.lintFiles(filesToVerify);
 
   if (quiet) {
@@ -60,6 +67,31 @@ const createReport = async () => {
   if (!Array.isArray(rc.formats)) {
     formats = [{ name: 'stylish' }];
     debug("using default format 'stylish'");
+  }
+
+  if (formatOverrides) {
+    if (formatOverrides.length % 3) {
+      debug(
+        `incorrect length of overrides provided: ${formatOverrides.length}`,
+      );
+    } else {
+      const overridesTuples = groupByN(3, formatOverrides);
+      overridesTuples.forEach(([index, key, value]) => {
+        if (typeof index === 'number' && index >= 0) {
+          if (index < formats.length) {
+            formats[index][key] = value;
+          } else {
+            debug(
+              `index provided is larger than largest format index: ${index} > ${
+                formats.length - 1
+              }`,
+            );
+          }
+        } else {
+          debug(`invalid index provided: ${index}`);
+        }
+      });
+    }
   }
 
   formats.forEach(async (format) => {

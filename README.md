@@ -40,10 +40,11 @@ npm i --save-dev eslint-output
 
 ##### Command line options
 
-| Option                 | Value | Description                                                                      |
-| ---------------------- | ----- | -------------------------------------------------------------------------------- |
-| `--quiet`, `-q`        |       | Don't report warnings, only errors                                               |
-| `--max-warnings`, `-m` | Int   | Maximum number of warnings before the process returns an unsuccessful error code |
+| Option                     | Value                          | Description                                                                                                                    |
+| -------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `--quiet`, `-q`            |                                | Don't report warnings, only errors                                                                                             |
+| `--max-warnings`, `-m`     | `Int`                          | Maximum number of warnings before the process returns an unsuccessful error code                                               |
+| `--format-overrides`, `-o` | Array: `[Int, String, String]` | Override key in specific format array item.<br />Pass an array of groups of three items, in the pattern `[index, key, value]`. |
 
 Files to be checked can also be passed in the command, e.g.
 
@@ -52,6 +53,14 @@ npm run eslint-output src/**/*.js test/**/*.js
 ```
 
 This will override the `files` array in `.eslintoutputrc`.
+
+Multiple format overrides can be passed in one command, e.g.
+
+```shell
+npm run eslint-output -o 1 path "path/to/file.json" -o 2 output console -- app.js
+```
+
+Be careful that each call contains three elements - an index, a key, and a value to replace with.
 
 #### Notes:
 
