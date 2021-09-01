@@ -9,7 +9,7 @@ const rc = require('./config');
 
 const cwd = path.resolve(process.cwd());
 const { maxWarnings, quiet, _ } = yargs.options({
-  maxWarnings: { type: 'number', alias: 'mw' },
+  maxWarnings: { type: 'number', alias: 'm' },
   quiet: { type: 'boolean', default: false, alias: 'q' },
 }).argv;
 

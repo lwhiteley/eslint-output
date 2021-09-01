@@ -40,10 +40,10 @@ npm i --save-dev eslint-output
 
 ##### Command line options
 
-| Option                  | Value | Description                                                                      |
-| ----------------------- | ----- | -------------------------------------------------------------------------------- |
-| `--quiet`, `-q`         |       | Don't report warnings, only errors                                               |
-| `--max-warnings`, `-mw` | Int   | Maximum number of warnings before the process returns an unsuccessful error code |
+| Option                 | Value | Description                                                                      |
+| ---------------------- | ----- | -------------------------------------------------------------------------------- |
+| `--quiet`, `-q`        |       | Don't report warnings, only errors                                               |
+| `--max-warnings`, `-m` | Int   | Maximum number of warnings before the process returns an unsuccessful error code |
 
 Files to be checked can also be passed in the command, e.g.
 
