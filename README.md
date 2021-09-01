@@ -47,7 +47,7 @@ npm i --save-dev eslint-output
 
 #### Notes:
 
-- It is optional to also specify configs for the eslint cliengine using the `cliEngineConfig` property. See http://eslint.org/docs/developer-guide/nodejs-api#cliengine for the options. However, it is recommended that you use the `.eslintrc`
+- It is optional to also specify configs for the eslint CLI engine using the `eslintConfig` property. See https://eslint.org/docs/developer-guide/nodejs-api#eslint-class for the options. However, it is recommended that you use the `.eslintrc`
 - file paths are relative to the current working directory
 - pull requests are welcome
 
