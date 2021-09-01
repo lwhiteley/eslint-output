@@ -38,19 +38,19 @@ npm i --save-dev eslint-output
 }
 ```
 
-##### Commad line options
+##### Command line options
 
-```
---quiet                         Don't report warnings, only errors
---max-warnings Int              Maximum number of warnings before the process returns an unsucessful error code
-```
+| Option                  | Value | Description                                                                      |
+| ----------------------- | ----- | -------------------------------------------------------------------------------- |
+| `--quiet`, `-q`         |       | Don't report warnings, only errors                                               |
+| `--max-warnings`, `-mw` | Int   | Maximum number of warnings before the process returns an unsuccessful error code |
 
 #### Notes:
 
-- It is optional to also specify configs for the eslint CLI engine using the `eslintConfig` property. See https://eslint.org/docs/developer-guide/nodejs-api#eslint-class for the options. However, it is recommended that you use the `.eslintrc`
-- file paths are relative to the current working directory
-- pull requests are welcome
+- It is optional to also specify configs for the eslint CLI engine using the `eslintConfig` property. See https://eslint.org/docs/developer-guide/nodejs-api#eslint-class for the options. However, it is recommended that you use the `.eslintrc`.
+- File paths are relative to the current working directory.
+- Pull requests are welcome!
 
 ### Breaking changes
 
-- removed explicitly setting `envs: ['browser', 'mocha']`
+- Removed explicitly setting `envs: ['browser', 'mocha']`.
