@@ -40,11 +40,11 @@ npm i --save-dev eslint-output
 
 ##### Command line options
 
-| Option                     | Value                          | Description                                                                                                                    |
-| -------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `--quiet`, `-q`            |                                | Don't report warnings, only errors                                                                                             |
-| `--max-warnings`, `-m`     | `Int`                          | Maximum number of warnings before the process returns an unsuccessful error code                                               |
-| `--format-overrides`, `-o` | Array: `[Int, String, String]` | Override key in specific format array item.<br />Pass an array of groups of three items, in the pattern `[index, key, value]`. |
+| Option                     | Value                          | Description                                                                                                          |
+| -------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `--quiet`, `-q`            |                                | Don't report warnings, only errors                                                                                   |
+| `--max-warnings`, `-m`     | `Int`                          | Maximum number of warnings before the process returns an unsuccessful error code                                     |
+| `--format-overrides`, `-o` | Array: `[Int, String, String]` | Override key in specific format array item.<br />Pass an array of three items, in the pattern `[index, key, value]`. |
 
 Files to be checked can also be passed in the command, e.g.
 
