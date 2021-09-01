@@ -8,8 +8,8 @@ const debug = require('debug')('eslint-output');
 const rc = require('./config');
 
 const cwd = path.resolve(process.cwd());
-const { maxWarnings, quiet } = yargs.options({
-  maxWarnings: { type: 'number', default: undefined, alias: 'mw' },
+const { maxWarnings, quiet, _ } = yargs.options({
+  maxWarnings: { type: 'number', alias: 'mw' },
   quiet: { type: 'boolean', default: false, alias: 'q' },
 }).argv;
 
@@ -21,8 +21,8 @@ const config = {
 
 const cli = new ESLint(config);
 
-const createReport = async (files = ['.']) => {
-  const filesToVerify = files || ['.'];
+const createReport = async () => {
+  const filesToVerify = _ || rc.files || ['.'];
   let report = await cli.lintFiles(filesToVerify);
 
   if (quiet) {
@@ -84,4 +84,4 @@ const createReport = async (files = ['.']) => {
   }
 };
 
-createReport(rc.files);
+createReport();

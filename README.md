@@ -45,6 +45,14 @@ npm i --save-dev eslint-output
 | `--quiet`, `-q`         |       | Don't report warnings, only errors                                               |
 | `--max-warnings`, `-mw` | Int   | Maximum number of warnings before the process returns an unsuccessful error code |
 
+Files to be checked can also be passed in the command, e.g.
+
+```shell
+npm run eslint-output src/**/*.js test/**/*.js
+```
+
+This will override the `files` array in `.eslintoutputrc`.
+
 #### Notes:
 
 - It is optional to also specify configs for the eslint CLI engine using the `eslintConfig` property. See https://eslint.org/docs/developer-guide/nodejs-api#eslint-class for the options. However, it is recommended that you use the `.eslintrc`.
