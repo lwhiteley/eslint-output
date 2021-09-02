@@ -31,26 +31,48 @@ npm i --save-dev eslint-output
     {
       "name": "junit",
       "output": "file",
-      "path": "tmp/junit.xml"
+      "path": "tmp/junit.xml",
+      "id": "myJunit"
     }
   ],
-  "cliEngineConfig": {}
+  "eslintConfig": {}
 }
 ```
 
-##### Commad line options
+##### Command line options
 
+| Option                     | Value       | Description                                                                                                                          |
+| -------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `--quiet`, `-q`            |             | Don't report warnings, only errors                                                                                                   |
+| `--max-warnings`, `-m`     | `Int`       | Maximum number of warnings before the process returns an unsuccessful error code                                                     |
+| `--format-overrides`, `-o` | `String`(s) | Override key(s) in specific format array item(s), using format `id.key=value`.<br />`id` field must be added to desired format item. |
+
+Files to be checked can also be passed in the command, e.g.
+
+```shell
+npm run eslint-output src/**/*.js test/**/*.js
 ```
---quiet                         Don't report warnings, only errors
---max-warnings Int              Maximum number of warnings before the process returns an unsucessful error code
+
+This will override the `files` array in `.eslintoutputrc`.
+
+Multiple format overrides can be passed in one command, e.g.
+
+```shell
+npm run eslint-output -o gitlab.path="path/to/file.json" myJunit.output=console -- src/**/*.js
+```
+
+or even
+
+```shell
+npm run eslint-output -o gitlab.path="path/to/file.json" -q  -o myJunit.output=console -- src/**/*.js
 ```
 
 #### Notes:
 
-- It is optional to also specify configs for the eslint cliengine using the `cliEngineConfig` property. See http://eslint.org/docs/developer-guide/nodejs-api#cliengine for the options. However, it is recommended that you use the `.eslintrc`
-- file paths are relative to the current working directory
-- pull requests are welcome
+- It is optional to also specify configs for the eslint CLI engine using the `eslintConfig` property. See https://eslint.org/docs/developer-guide/nodejs-api#eslint-class for the options. However, it is recommended that you use the `.eslintrc`.
+- File paths are relative to the current working directory.
+- Pull requests are welcome!
 
 ### Breaking changes
 
-- removed explicitly setting `envs: ['browser', 'mocha']`
+- Removed explicitly setting `envs: ['browser', 'mocha']`.

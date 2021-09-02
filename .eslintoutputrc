@@ -1,5 +1,7 @@
 {
-  "files": ["."],
+  "files": [
+    "."
+  ],
   "formats": [
     {
       "name": "stylish",
@@ -8,7 +10,8 @@
     {
       "name": "junit",
       "output": "file",
-      "path": "tmp/junit.xml"
+      "path": "tmp/junit.xml",
+      "id": "myJunit"
     }
   ]
 }
