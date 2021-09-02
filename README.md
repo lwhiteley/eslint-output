@@ -58,13 +58,13 @@ This will override the `files` array in `.eslintoutputrc`.
 Multiple format overrides can be passed in one command, e.g.
 
 ```shell
-npm run eslint-output -o gitlab.path="path/to/file.json" myJunit.output=console -- app.js
+npm run eslint-output -o gitlab.path="path/to/file.json" myJunit.output=console -- src/**/*.js
 ```
 
 or even
 
 ```shell
-npm run eslint-output -o gitlab.path="path/to/file.json" -q  -o myJunit.output=console -- app.js
+npm run eslint-output -o gitlab.path="path/to/file.json" -q  -o myJunit.output=console -- src/**/*.js
 ```
 
 #### Notes:
