@@ -31,7 +31,8 @@ npm i --save-dev eslint-output
     {
       "name": "junit",
       "output": "file",
-      "path": "tmp/junit.xml"
+      "path": "tmp/junit.xml",
+      "id": "myJunit"
     }
   ],
   "cliEngineConfig": {}
@@ -40,11 +41,11 @@ npm i --save-dev eslint-output
 
 ##### Command line options
 
-| Option                     | Value                          | Description                                                                                                          |
-| -------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| `--quiet`, `-q`            |                                | Don't report warnings, only errors                                                                                   |
-| `--max-warnings`, `-m`     | `Int`                          | Maximum number of warnings before the process returns an unsuccessful error code                                     |
-| `--format-overrides`, `-o` | Array: `[Int, String, String]` | Override key in specific format array item.<br />Pass an array of three items, in the pattern `[index, key, value]`. |
+| Option                     | Value       | Description                                                                                                                          |
+| -------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `--quiet`, `-q`            |             | Don't report warnings, only errors                                                                                                   |
+| `--max-warnings`, `-m`     | `Int`       | Maximum number of warnings before the process returns an unsuccessful error code                                                     |
+| `--format-overrides`, `-o` | `String`(s) | Override key(s) in specific format array item(s), using format `id.key=value`.<br />`id` field must be added to desired format item. |
 
 Files to be checked can also be passed in the command, e.g.
 
@@ -57,10 +58,14 @@ This will override the `files` array in `.eslintoutputrc`.
 Multiple format overrides can be passed in one command, e.g.
 
 ```shell
-npm run eslint-output -o 1 path "path/to/file.json" -o 2 output console -- app.js
+npm run eslint-output -o gitlab.path="path/to/file.json" myJunit.output=console -- app.js
 ```
 
-Be careful that each call contains three elements - an index, a key, and a value to replace with.
+or even
+
+```shell
+npm run eslint-output -o gitlab.path="path/to/file.json" -q  -o myJunit.output=console -- app.js
+```
 
 #### Notes:
 

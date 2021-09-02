@@ -22,12 +22,6 @@ const config = {
 
 const cli = new ESLint(config);
 
-const groupByN = (n, data) => {
-  const result = [];
-  for (let i = 0; i < data.length; i += n) result.push(data.slice(i, i + n));
-  return result;
-};
-
 const createReport = async () => {
   const filesToVerify = _.length ? _ : rc.files || ['.'];
   let report = await cli.lintFiles(filesToVerify);
@@ -70,28 +64,22 @@ const createReport = async () => {
   }
 
   if (formatOverrides) {
-    if (formatOverrides.length % 3) {
-      debug(
-        `incorrect length of overrides provided: ${formatOverrides.length}`,
-      );
-    } else {
-      const overridesTuples = groupByN(3, formatOverrides);
-      overridesTuples.forEach(([index, key, value]) => {
-        if (typeof index === 'number' && index >= 0) {
-          if (index < formats.length) {
-            formats[index][key] = value;
-          } else {
-            debug(
-              `index provided is larger than largest format index: ${index} > ${
-                formats.length - 1
-              }`,
-            );
-          }
+    formatOverrides.forEach((override) => {
+      const [idKey, value] = override.split('=');
+      const [id, key] = idKey.split('.');
+      if (id !== undefined && key !== undefined && value !== undefined) {
+        const index = formats.findIndex((format) => format.id === id);
+        if (index >= 0) {
+          formats[index][key] = value;
         } else {
-          debug(`invalid index provided: ${index}`);
+          debug(`no format entry with id ${id} found.`);
         }
-      });
-    }
+      } else {
+        debug(
+          `invalid override provided: ${override}. expected format: id.key=value`,
+        );
+      }
+    });
   }
 
   formats.forEach(async (format) => {
