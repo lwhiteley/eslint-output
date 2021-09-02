@@ -8,7 +8,12 @@ const debug = require('debug')('eslint-output');
 const rc = require('./config');
 
 const cwd = path.resolve(process.cwd());
-const { formatOverrides, maxWarnings, quiet, _ } = yargs.options({
+const {
+  formatOverrides,
+  maxWarnings,
+  quiet,
+  _: additionalArguments,
+} = yargs.options({
   formatOverrides: { type: 'array', alias: 'o' },
   maxWarnings: { type: 'number', alias: 'm' },
   quiet: { type: 'boolean', default: false, alias: 'q' },
@@ -23,7 +28,9 @@ const config = {
 const cli = new ESLint(config);
 
 const createReport = async () => {
-  const filesToVerify = _.length ? _ : rc.files || ['.'];
+  const filesToVerify = additionalArguments.length
+    ? additionalArguments
+    : rc.files || ['.'];
   let report = await cli.lintFiles(filesToVerify);
 
   if (quiet) {

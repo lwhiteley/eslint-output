@@ -1,5 +1,7 @@
 {
-  "files": ["."],
+  "files": [
+    "."
+  ],
   "formats": [
     {
       "name": "stylish",
