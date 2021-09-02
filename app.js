@@ -102,6 +102,13 @@ const createReport = async () => {
   const isRunFailed = () => {
     const exceededMaxWarnings =
       typeof maxWarnings === 'number' && totalWarnings > maxWarnings;
+
+    if (exceededMaxWarnings) {
+      console.error(
+        `Max warnings of ${maxWarnings} exceeded: ${totalWarnings} warnings`,
+      );
+    }
+
     return totalErrors > 0 || exceededMaxWarnings;
   };
 
