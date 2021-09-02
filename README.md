@@ -35,7 +35,7 @@ npm i --save-dev eslint-output
       "id": "myJunit"
     }
   ],
-  "cliEngineConfig": {}
+  "eslintConfig": {}
 }
 ```
 
