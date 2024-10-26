@@ -44,6 +44,6 @@
     "globals": "^15.11.0"
   },
   "peerDependencies": {
-    "eslint": ">=7"
+    "eslint": ">=9"
   }
 }
