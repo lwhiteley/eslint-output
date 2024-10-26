@@ -6,6 +6,7 @@ const yargs = require('yargs');
 const write = require('write');
 const debug = require('debug')('eslint-output');
 const { getConfig } = require('./config');
+const logger = console;
 
 const createReport = async () => {
   const rc = await getConfig();
@@ -22,7 +23,6 @@ const createReport = async () => {
   }).argv;
 
   const config = {
-    useEslintrc: true,
     ...(rc.eslintConfig || {}),
     cwd,
   };
@@ -45,7 +45,7 @@ const createReport = async () => {
 
   const outputs = {
     console(output) {
-      return console.log(output);
+      return logger.log(output);
     },
     file(output, format) {
       if (!format.path) {
@@ -104,7 +104,7 @@ const createReport = async () => {
       typeof maxWarnings === 'number' && totalWarnings > maxWarnings;
 
     if (exceededMaxWarnings) {
-      console.error(
+      logger.error(
         `Max warnings of ${maxWarnings} exceeded: ${totalWarnings} warnings`,
       );
     }
