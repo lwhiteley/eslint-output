@@ -5,29 +5,29 @@ const path = require('path');
 const yargs = require('yargs');
 const write = require('write');
 const debug = require('debug')('eslint-output');
-const rc = require('./config');
-
-const cwd = path.resolve(process.cwd());
-const {
-  formatOverrides,
-  maxWarnings,
-  quiet,
-  _: additionalArguments,
-} = yargs.options({
-  formatOverrides: { type: 'array', alias: 'o' },
-  maxWarnings: { type: 'number', alias: 'm' },
-  quiet: { type: 'boolean', default: false, alias: 'q' },
-}).argv;
-
-const config = {
-  useEslintrc: true,
-  ...(rc.eslintConfig || {}),
-  cwd,
-};
-
-const cli = new ESLint(config);
+const { getConfig } = require('./config');
 
 const createReport = async () => {
+  const rc = await getConfig();
+  const cwd = path.resolve(process.cwd());
+  const {
+    formatOverrides,
+    maxWarnings,
+    quiet,
+    _: additionalArguments,
+  } = yargs.options({
+    formatOverrides: { type: 'array', alias: 'o' },
+    maxWarnings: { type: 'number', alias: 'm' },
+    quiet: { type: 'boolean', default: false, alias: 'q' },
+  }).argv;
+
+  const config = {
+    useEslintrc: true,
+    ...(rc.eslintConfig || {}),
+    cwd,
+  };
+
+  const cli = new ESLint(config);
   const filesToVerify = additionalArguments.length
     ? additionalArguments
     : rc.files || ['.'];

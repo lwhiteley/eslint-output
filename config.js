@@ -1,16 +1,26 @@
-const { cosmiconfigSync } = require('cosmiconfig');
+const { lilconfig } = require('lilconfig');
 
-const explorerSync = cosmiconfigSync('eslintoutput');
-
-const searchedFor = explorerSync.search();
-
-module.exports = {
-  files: ['.'],
-  formats: [
-    {
-      name: 'stylish',
-      output: 'console',
-    },
-  ],
-  ...searchedFor.config,
+const options = {
+  searchPlaces: ['package.json', 'eslintoutput.config.js'],
+  ignoreEmptySearchPlaces: false,
 };
+
+async function getConfig() {
+  const rc = await lilconfig(
+    'eslintoutput',
+    options, // optional
+  ).search();
+
+  return {
+    files: ['.'],
+    formats: [
+      {
+        name: 'stylish',
+        output: 'console',
+      },
+    ],
+    ...(rc.config || {}),
+  };
+}
+
+module.exports = { getConfig };
