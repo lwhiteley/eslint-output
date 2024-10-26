@@ -1,7 +1,6 @@
 # eslint-output
 
 [![npm version](https://badge.fury.io/js/eslint-output.svg)](https://badge.fury.io/js/eslint-output)
-[![Build Status](https://travis-ci.org/lwhiteley/eslint-output.svg?branch=master)](https://travis-ci.org/lwhiteley/eslint-output)
 
 ### Getting started
 
@@ -13,9 +12,9 @@ npm i --save-dev eslint-output
 
 #### Getting started: Next Steps
 
-- Configure eslint using `.eslintrc`
-- Create an npm script in your package json eg. `"eslint-output": "eslint-output"`
-- Configure eslint-output with `.eslintoutputrc` placed at the root of your project's directory. See example below
+- Configure eslint using Flat Config
+- Create a script in your package json eg. `"eslint-output": "eslint-output"`
+- Configure eslint-output with `eslintoutput.config.js` placed at the root of your project's directory. See example below
 - Run `npm run eslint-output` or `yarn run eslint-output`. See below for command line options.
 
 **Example `eslintoutput.config.js`**
@@ -35,7 +34,6 @@ module.exports = {
       id: 'myJunit',
     },
   ],
-  eslintConfig: {},
 };
 ```
 
@@ -53,7 +51,7 @@ Files to be checked can also be passed in the command, e.g.
 npm run eslint-output src/**/*.js test/**/*.js
 ```
 
-This will override the `files` array in `.eslintoutputrc`.
+This will override the `files` array in `eslintoutput.config.js`.
 
 Multiple format overrides can be passed in one command, e.g.
 
@@ -69,10 +67,11 @@ npm run eslint-output -o gitlab.path="path/to/file.json" -q  -o myJunit.output=c
 
 #### Notes:
 
-- It is optional to also specify configs for the eslint CLI engine using the `eslintConfig` property. See https://eslint.org/docs/developer-guide/nodejs-api#eslint-class for the options. However, it is recommended that you use the `.eslintrc`.
 - File paths are relative to the current working directory.
+- Please be mindful that a lot of formatters have been removed from the core eslint
+  - these removed formatters must be installed separately. eg. `eslint-formatter-junit`
 - Pull requests are welcome!
 
 ### Breaking changes
 
-- Removed explicitly setting `envs: ['browser', 'mocha']`.
+- config file is now `eslintoutput.config.js`.
