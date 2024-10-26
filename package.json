@@ -24,17 +24,17 @@
     "test": "npm run lint",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "lint:outputs": "DEBUG=true node app.js",
+    "lint:outputs": "DEBUG=true node app.js --max-warnings=0",
     "publish": "git push origin --tags && git push origin",
     "release:patch": "npm version patch && npm publish --access public",
     "release:minor": "npm version minor && npm publish --access public",
     "release:major": "npm version major && npm publish --access public"
   },
   "dependencies": {
-    "cosmiconfig": "^6.0.0",
-    "debug": "^4.3.2",
+    "debug": "^4.3.7",
+    "lilconfig": "^3.1.2",
     "write": "^2.0.0",
-    "yargs": "^17.1.1"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

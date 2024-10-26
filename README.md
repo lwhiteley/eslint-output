@@ -18,25 +18,25 @@ npm i --save-dev eslint-output
 - Configure eslint-output with `.eslintoutputrc` placed at the root of your project's directory. See example below
 - Run `npm run eslint-output` or `yarn run eslint-output`. See below for command line options.
 
-**Example `.eslintoutputrc`**
+**Example `eslintoutput.config.js`**
 
-```json
-{
-  "files": ["."],
-  "formats": [
+```js
+module.exports = {
+  files: ['.'],
+  formats: [
     {
-      "name": "stylish",
-      "output": "console"
+      name: 'stylish',
+      output: 'console',
     },
     {
-      "name": "junit",
-      "output": "file",
-      "path": "tmp/junit.xml",
-      "id": "myJunit"
-    }
+      name: 'junit',
+      output: 'file',
+      path: 'tmp/junit.xml',
+      id: 'myJunit',
+    },
   ],
-  "eslintConfig": {}
-}
+  eslintConfig: {},
+};
 ```
 
 ##### Command line options
