@@ -4,3 +4,7 @@
 .eslintignore
 tmp
 .idea
+.github
+eslintoutput.config.js
+eslint.config.js
+.prettierrc
