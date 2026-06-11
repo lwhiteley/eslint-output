@@ -89,15 +89,16 @@ const createReport = async () => {
     });
   }
 
-  formats.forEach(async (format) => {
+  for (const format of formats) {
     const formatter = await cli.loadFormatter(format.name);
     if (formatter) {
       const outputMethod = outputs[format.output] || outputs.console;
-      outputMethod(formatter.format(report), format, report);
+      const output = await formatter.format(report);
+      outputMethod(output, format, report);
     } else {
       debug(`could not find formatter with name ${format.name}`);
     }
-  });
+  }
 
   const isRunFailed = () => {
     const exceededMaxWarnings =
