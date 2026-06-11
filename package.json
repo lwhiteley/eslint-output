@@ -12,13 +12,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lwhiteley/eslint-output"
+    "url": "git+https://github.com/lwhiteley/eslint-output.git"
   },
   "author": "Layton Whiteley",
   "license": "MIT",
   "private": false,
   "bin": {
-    "eslint-output": "./app.js"
+    "eslint-output": "app.js"
   },
   "scripts": {
     "test": "npm run lint",
